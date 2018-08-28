@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>网页方式收集</title>
+  </head>
+  <body>
+    <div class="bot-dot">
+      <div class="collect-li">
+        <span class="collect-li-title">目标用户</span>
+        <div class="collect-li-con input-group">
+          目标收集量
+          <select class="dropselect select-long" name="">
+            <option value="100">100</option>
+            <option value="200">200</option>
+            <option value="300">300</option>
+            <option value="400">400</option>
+            <option value="500">500</option>
+            <option value="600">600</option>
+            <option value="700">700</option>
+            <option value="800">800</option>
+            <option value="900">900</option>
+            <option value="1000">1000</option>
+            <option value="5000">5000</option>
+          </select>
+        </div>
+      </div>
+      <div class="collect-li">
+        <span class="collect-li-title">质量控制</span>
+        <div class="collect-li-con input-group f-sm">
+          <p>
+            <span class="gray">提示：平台提供以下策略确保问卷质量，无效答卷不计入样本总量</span>
+          </p>
+          <p><input type="checkbox" name="" value="">同IP限答一次</p>
+          <p><input type="checkbox" name="" value="">每个题目最少答题时间
+            <select class="dropselect" name="">
+              <option value="0">不限</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5" selected>5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </select>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="bot-dot">
+      <div class="collect-li">
+        <span class="collect-li-title">分享地址</span>
+        <div class="collect-li-con f-sm">
+          <p>复制或分享访问链接给他人填写</p>
+          <div class="input-group input-address-sm">
+            <input type="text" class="form-control" name="" placeholder="问卷发布后显示地址" value="">
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-info copy-btn" name="button" onclick="#">复制</button>
+            </span>
+          </div>
+          <p>用手机微信扫一扫二维码分享给你的朋友</p>
+          <div>
+            <img class="collect-img" src="images/ma.png" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

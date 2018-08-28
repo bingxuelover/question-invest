@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=EDGE">
+    <title>问卷调查-编辑题库</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/common.css">
+    <script src="js/jquery.min.js"></script>
+  </head>
+  <body>
+    <div class="wapper">
+      <!-- header -->
+      <div id="header"></div>
+      <script>
+        $(function () {
+          $('#header').load('component/header.html .header');
+        });
+      </script>
+      <!-- 正文 -->
+      <div class="content-wapper">
+        <!-- 内容区 -->
+        <div class="m-container m-content-noleft">
+          <ol class="breadcrumb">
+            <li>
+              <a href="survey-list.html">问卷调查</a>
+            </li>
+            <li class="active">编辑题目</li>
+          </ol>
+          <div class="content">
+            <div class="m-content">
+              <!-- 编辑区 -->
+              <div class="edit-area">
+                <div class="edit-list">
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <h3 class="panel-title">
+                        题型选择
+                      </h3>
+                    </div>
+                    <div class="panel-body">
+                      <ul class="list-group edit-icon">
+                        <li class="list-group-item edit-icon-1" data-role="single-type" data-title="单选题" onclick="addQuestion(this,'single-type',true,1)">单选题</li>
+                        <li class="list-group-item edit-icon-2" data-role="select-type" data-title="下拉选择题" onclick="addQuestion(this,'select-type',true,2)">下拉选择题</li>
+                        <li class="list-group-item edit-icon-3" data-role="checkbox-type" data-title="多选题" onclick="addQuestion(this,'checkbox-type',true,1)">多选题</li>
+                        <li class="list-group-item edit-icon-4" data-role="text-type" data-title="单行填空题" onclick="addQuestion(this,'text-type',true,2)">单行填空题</li>
+                        <li class="list-group-item edit-icon-5" data-role="list-type" data-title="多行填空题" onclick="addQuestion(this,'list-type',true,2)">多行填空题</li>
+                        <li class="list-group-item edit-icon-6" data-role="table-radio" data-title="矩阵单选题" onclick="addQuestion(this,'table-radio',true,1)">矩阵单选题</li>
+                        <li class="list-group-item edit-icon-7" data-role="table-checkbox" data-title="矩阵多选题" onclick="addQuestion(this,'table-checkbox',true,1)">矩阵多选题</li>
+                        <li class="list-group-item edit-icon-8" data-role="single-img" data-title="图片单选" onclick="addQuestion(this,'single-img',true,2)">图片单选</li>
+                        <li class="list-group-item edit-icon-9" data-role="list-img" data-title="图片多选" onclick="addQuestion(this,'list-img',true,2)">图片多选</li>
+                        <li class="list-group-item edit-icon-10" data-role="textarea-type" data-title="描述说明" onclick="addQuestion(this,'textarea-type',false,3)">描述说明</li>
+                        <li class="list-group-item edit-icon-12" data-role="line-radio" data-title="量表题" onclick="addQuestion(this,'line-radio',true,3)">量表题</li>
+                        <li class="list-group-item edit-icon-11" data-role="line-radio" data-title="分页符" onclick="addQuestion(this,'page-line',false,3)">分页符</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="edit-content edit-question-box">
+                  <div class="edit-con-sum edit-bor edit-select form-inline">
+                    <div class="dropdown form-group">
+                      <label>选择题库分类：</label>
+                      <button class="btn btn-info" id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        题型选择
+                        <span class="caret"></span>
+                      </button>
+                      <ul class="list-group dropdown-menu" aria-labelledby="dLabel">
+                        <li>
+                          <a href="javascript:void(0)">全部类别</a>
+                        </li>
+                        <li>
+                          <a href="javascript:void(0)">人口属性</a>
+                        </li>
+                        <li>
+                          <a href="javascript:void(0)">用户联系方式</a>
+                        </li>
+                        <li>
+                          <a href="javascript:void(0)">上网行为</a>
+                        </li>
+                        <li>
+                          <a href="javascript:void(0)">产品使用背景</a>
+                        </li>
+                        <li>
+                          <a href="javascript:void(0)">满意度</a>
+                        </li>
+                        <li>
+                          <a href="javascript:void(0)">移动端使用情况</a>
+                        </li>
+                        <li>
+                          <a href="javascript:void(0)">好友关系链</a>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="form-group ml10">
+                      <label>
+                        简短说明：</label><input type="text" class="form-control input-txt" name="" value="">
+                    </div>
+                  </div>
+                  <!-- 编辑内容区 -->
+                  <div class="edit-con" id="editArea">
+                    <!-- 内容展示区域 -->
+                  </div>
+                  <div class="edit-botton edit-bor">
+                    <div class="page-line-area">
+                      页码:1/1
+                    </div>
+                    <button type="button" class="btn btn-primary" onclick="location.href='question-list.html'">保存</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- footer -->
+      <div id="footer"></div>
+      <script>
+        $(function () {
+          $('#footer').load('component/footer.html .footer')
+        });
+      </script>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="myModalSet" tabindex="-1" role="dialog" aria-labelledby="myModalLabelSet">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title" id="myModalLabelSet">逻辑设置</h4>
+          </div>
+          <div class="modal-body">
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            <button type="button" class="btn btn-primary">保存</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="myModalQuestion" tabindex="-1" role="dialog" aria-labelledby="myModalLabelQues">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title" id="myModalLabelQues">题目设置</h4>
+          </div>
+          <div class="modal-body">
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            <button type="button" class="btn btn-primary">保存</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="modalInput" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title" id="myModalLabel">选项设置</h4>
+          </div>
+          <div class="modal-body form-group">
+            <div class="checkbox">
+              <label><input type="checkbox" id="checkInput" name="" value="" onchange="checkInput(this)">
+                选项后增加填空框</label>
+            </div>
+            <div class="checkbox hide">
+              <label><input type="checkbox" checked name="" value="">
+                填空框可跳过不答</label>
+            </div>
+            <input type="hidden" id="elmDiv" name="" value="">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            <button type="button" class="btn btn-primary">保存</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.ui.js"></script>
+    <script src='js/jquery.editor.js'></script>
+    <script>
+      $(function () {
+        // select事件
+        $('.dropdown-menu').children('li').each(function (i, e) {
+          $(e).on('click', function () {
+            document.getElementById('dLabel').innerHTML = $(e).text() + ' <span class="caret"></span>';
+          })
+        })
+      })
+    </script>
+  </body>
+</html>

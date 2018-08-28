@@ -1,0 +1,267 @@
+<div class="page-template">
+  <div class="content">
+    <form class="navbar-form" role="search">
+      <div class="btn-group dropdown">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="dropdown-txt">行业分类</span>
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li>
+            <a href="#">全部</a>
+          </li>
+          <li>
+            <a href="#">产品调研前</a>
+          </li>
+          <li>
+            <a href="#">产品调研后</a>
+          </li>
+          <li>
+            <a href="#">产品发布前</a>
+          </li>
+          <li>
+            <a href="#">产品发布后</a>
+          </li>
+          <li>
+            <a href="#">其它</a>
+          </li>
+        </ul>
+      </div>
+      <div class="btn-group dropdown">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="dropdown-txt">使用次数</span>
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li>
+            <a href="#">使用次数</a>
+          </li>
+          <li>
+            <a href="#">问卷名称</a>
+          </li>
+        </ul>
+      </div>
+      <!-- 搜索框 -->
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="问卷名称">
+      </div>
+      <button type="submit" class="btn btn-info">搜索</button>
+    </form>
+    <!-- 列表 -->
+    <div class="table-list">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>问卷名称</th>
+            <th>类别</th>
+            <th>作者</th>
+            <th>使用次数</th>
+            <th>题目数</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <a href="javascript:void(0)" onclick="openDemo(this)">App使用习惯调查-副本</a>
+            </td>
+            <td>产品调研阶段</td>
+            <td>a*n</td>
+            <td>
+              10452
+            </td>
+            <td>23</td>
+            <td>
+              <a role="button" href="javascript:void(0)" onclick="openDemo(this)">查看</a>
+              <a role="button" data-toggle="modal" href="#editModal">修改分类</a>
+              <a role="button" data-toggle="modal" href="#delModal">删除</a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="javascript:void(0)" onclick="openDemo(this)">App使用习惯调查-副本</a>
+            </td>
+            <td>产品调研阶段</td>
+            <td>a*n</td>
+            <td>
+              10452
+            </td>
+            <td>23</td>
+            <td>
+              <a role="button" href="javascript:void(0)" onclick="openDemo(this)">查看</a>
+              <a role="button" data-toggle="modal" href="#editModal">修改分类</a>
+              <a role="button" data-toggle="modal" href="#delModal">删除</a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="javascript:void(0)" onclick="openDemo(this)">App使用习惯调查-副本</a>
+            </td>
+            <td>产品调研阶段</td>
+            <td>a*n</td>
+            <td>
+              10452
+            </td>
+            <td>23</td>
+            <td>
+              <a role="button" href="javascript:void(0)" onclick="openDemo(this)">查看</a>
+              <a role="button" data-toggle="modal" href="#editModal">修改分类</a>
+              <a role="button" data-toggle="modal" href="#delModal">删除</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- 页码 -->
+    <nav class="navigation-area" aria-label="Page navigation">
+      <ul class="pagination">
+        <li>
+          <a href="#" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">1</a>
+        </li>
+        <li>
+          <a href="#">2</a>
+        </li>
+        <li>
+          <a href="#">3</a>
+        </li>
+        <li>
+          <a href="#">4</a>
+        </li>
+        <li>
+          <a href="#">5</a>
+        </li>
+        <li>
+          <a href="#" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>
+<div class="demo-page-box">
+  <div class="demo-page-icon">
+    <span class="glyphicon glyphicon-remove" aria-hidden="true" onclick="closeDemo(this)"></span>
+    <a class="btn btn-info" href="survey-edit.html" role="button">引用模版</a>
+    <a class="btn btn-info ml10" href="preview-survey.html?tab=2" target="_blank" role="button">试填问卷</a>
+  </div>
+  <div class="demo-page" id="demoPage">
+    <script>
+      $(function () {
+        $('#demoPage').load('view-survey.html .wapper-survey', function () {
+          $('.survey-ques-btn.form-group').hide();
+          $('head').append('<link rel="stylesheet" href="css/view-common.css">');
+        })
+      })
+    </script>
+  </div>
+</div>
+<script>
+  $(function () {})
+  function openDemo(elm) {
+    $('.demo-page-box').animate({
+      'right': '0'
+    }, 'slow');
+  }
+  function closeDemo(elm) {
+    $('.demo-page-box').animate({
+      'right': '-810px'
+    }, 'slow');
+  }
+</script>
+<div class="modal fade" id="delModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">删除操作</h4>
+      </div>
+      <div class="modal-body">
+        <p>删除后不可恢复，确定删除模版？</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary">确认</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">修改模版分类</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-inline">
+          <div class="form-group">
+            <label>选择模版分类：</label>
+            <select class="form-control" name="">
+              <option value="">请选择分类</option>
+              <option value="">产品调研前</option>
+              <option value="">产品调研后</option>
+              <option value="">产品发布前</option>
+              <option value="">产品发布后</option>
+              <option value="">其它</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary">确认</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  $(function () {
+    //删除模版
+    $('#delModal').on('show.bs.modal', function (event) {
+      var btn = $(event.relatedTarget);
+      var modal = $(this);
+      modal.find('.btn-primary').on('click', function (event) {
+        event.preventDefault();
+        btn.parent('td').parent('tr').remove();
+        modal.modal('hide');
+      });
+    });
+    $('#delModal').on('hidden.bs.modal', function (event) {
+      var modal = $(this);
+      modal.find('.btn-primary').off('click');
+    });
+    //模版修改分类确认事件
+    $('#editModal').on('show.bs.modal', function (event) {
+      var btn = $(event.relatedTarget);
+      var modal = $(this);
+      modal.find('.btn-primary').on('click', function (event) {
+        event.preventDefault();
+        /* 添加保存事件 */
+        modal.modal('hide');
+      });
+    });
+    $('#editModal').on('hidden.bs.modal', function (event) {
+      var modal = $(this);
+      modal.find('.btn-primary').off('click');
+    });
+    //下拉列表事件
+    $('.dropdown').each(function (index, el) {
+      $(el).children('.dropdown-menu').on('click', 'li', function (event) {
+        console.log('click');
+        var txt = $(el).children('button').children('.dropdown-txt');
+        var text = $(this).children('a').text();
+        txt.text(text);
+      });
+    });
+  })
+</script>

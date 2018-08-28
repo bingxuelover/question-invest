@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=EDGE">
+    <title>问卷调查-提交问卷</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/common.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <div class="wapper">
+      <!-- header -->
+      <div id="header"></div>
+      <script>
+        $(function () {
+          $('#header').load('component/header.html');
+        });
+      </script>
+      <!-- 正文 -->
+      <div class="content-wapper">
+        <!-- 内容区 -->
+        <div class="m-container m-content-noleft">
+          <ol class="breadcrumb">
+            <li>
+              <a href="survey-list.html">问卷调查</a>
+            </li>
+            <li class="active">提交问卷</li>
+          </ol>
+          <div class="content" id="myTabs">
+            <div class="m-banner">
+              <ul class="survey-nav">
+                <li class="active">
+                  <div class="survey-nav-icon">1</div>
+                  <div class="survey-nav-name">设计问卷</div>
+                  <div class="survey-nav-line"></div>
+                </li>
+                <li class="active">
+                  <div class="survey-nav-icon">2</div>
+                  <div class="survey-nav-name">收集设置</div>
+                  <div class="survey-nav-line"></div>
+                </li>
+                <li>
+                  <div class="survey-nav-icon">3</div>
+                  <div class="survey-nav-name">编辑完成</div>
+                </li>
+              </ul>
+            </div>
+            <div class="m-content">
+              <!-- 编辑区 -->
+              <div class="bot-dot">
+                <div class="collect-li form-inline">
+                  <span class="collect-li-title">收集方式</span>
+                  <div class="collect-li-con form-group">
+                    <div class="radio">
+                      <label>
+                        <input type="radio" name="collect-type" value="1" checked onclick="checkradio(2)">
+                        微信方式收集
+                      </label>
+                    </div>
+                    <div class="radio">
+                      <label>
+                        <input type="radio" name="collect-type" value="2" onclick="checkradio(2)">
+                        网页方式收集
+                      </label>
+                    </div>
+                    <div class="radio">
+                      <label>
+                        <input type="radio" name="collect-type" value="3" onclick="checkradio(3)">
+                        短信链接方式收集
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="collect-li-content" id="collectType1">
+                <script>
+                  $(function () {
+                    $('#collectType1').load('collect-1.html');
+                  })
+                </script>
+              </div>
+              <div class="collect-li-content hide" id="collectType2">
+                <script>
+                  $(function () {
+                    $('#collectType2').load('collect-1.html');
+                  })
+                </script>
+              </div>
+              <div class="collect-li-content hide" id="collectType3">
+                <script>
+                  $(function () {
+                    $('#collectType3').load('collect-3.html');
+                  })
+                </script>
+              </div>
+              <div class="collect-li">
+                <div class="collect-li-con">
+                  <button type="button" class="btn btn-info mr" onclick="location.href='survey-edit.html'">上一步</button>
+                  <button type="button" class="btn btn-warning mr" onclick="location.href='survey-view.html?tab=3'">立即发布</button>
+                  <button type="button" class="btn btn-primary mr" onclick="location.href='survey-edit.html'">提交审批</button>
+                  <button type="button" class="btn btn-success mr" onclick="location.href='survey-edit.html'">审批通过</button>
+                  <button type="button" class="btn btn-danger mr" onclick="location.href='survey-edit.html'">退回申请</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- footer -->
+      <div id="footer"></div>
+      <script>
+        $(function () {
+          $('#footer').load('component/footer.html .footer')
+        });
+      </script>
+    </div>
+    <script>
+      function checkradio(num) {
+        $('.collect-li-content').each(function (i, elm) {
+          var divId = 'collectType' + num;
+          if ($(elm).attr('id') === divId) {
+            $(elm).removeClass('hide')
+          } else {
+            if (!$(elm).hasClass('hide')) {
+              $(elm).addClass('hide')
+            }
+          }
+        })
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=EDGE">
+    <title>问卷调查</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/common.css">
+    <!-- <link rel="stylesheet/less" href="css/common.less">
+    <script>
+      less = {
+        env: "development",
+        async: false,
+        fileAsync: false,
+        poll: 1000,
+        functions: {},
+        dumpLineNumbers: "comments",
+        relativeUrls: false,
+        rootpath: "/localhost:3000/"
+      };
+    </script>
+    <script src="jsc/less.min.js"></script> -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <div class="wapper">
+      <!-- header -->
+      <div id="header"></div>
+      <script>
+        $(function () {
+          $('#header').load('component/header.html .header');
+        });
+      </script>
+      <!-- 正文 -->
+      <div class="content-wapper">
+        <!-- 菜单 -->
+        <div id="sidebar"></div>
+        <script>
+          $(function () {
+            $('#sidebar').load('component/sidebar.html .sidebar', function (response, status, xhr) {
+              $('#collapseOne').collapse('show');
+              $('.click-group-list').addClass('active');
+            });
+          });
+        </script>
+        <!-- 内容区 -->
+        <div class="m-container">
+          <ol class="breadcrumb">
+            <li>
+              <a href="survey-list.html">问卷调查</a>
+            </li>
+            <li class="active">我的问卷</li>
+          </ol>
+          <div class="content" id="page-height">
+            <div class="m-title">我的问卷</div>
+            <div class="m-content">
+              <div class="navbar-area">
+                <form class="navbar-form" role="search">
+                  <button type="button" class="btn btn-info" onclick="location.href='survey-create.html'">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                    创建问卷</button>
+                  <div class="btn-group dropdown">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <span class="dropdown-txt">全部状态</span>
+                      <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <a href="#">全部状态</a>
+                      </li>
+                      <li>
+                        <a href="#">创建中</a>
+                      </li>
+                      <li>
+                        <a href="#">发布中</a>
+                      </li>
+                      <li>
+                        <a href="#">审核不通过</a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="btn-group dropdown">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <span class="dropdown-txt">发布方式</span>
+                      <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <a href="#">全部</a>
+                      </li>
+                      <li>
+                        <a href="#">短信</a>
+                      </li>
+                      <li>
+                        <a href="#">网页</a>
+                      </li>
+                      <li>
+                        <a href="#">微信</a>
+                      </li>
+                    </ul>
+                  </div>
+                  <!-- 搜索框 -->
+                  <div class="form-group">
+                    <input type="text" class="form-control" placeholder="输入标题搜索">
+                  </div>
+                  <button type="submit" class="btn btn-info" aria-label="Search">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                  </button>
+                </form>
+              </div>
+              <div class="table-list">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>问卷名称/问卷ID</th>
+                      <th>创建时间</th>
+                      <th>完成情况</th>
+                      <th>项目状态</th>
+                      <th>发布方式</th>
+                      <th>操作</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <a href="preview-survey.html">App使用习惯调查-副本 / 285109</a>
+                      </td>
+                      <td>2017-06-13 09:19:15</td>
+                      <td>0/0</td>
+                      <td>
+                        <span class="label label-info">创建中</span>
+                      </td>
+                      <td>微信</td>
+                      <td>
+                        <a href="survey-view.html">查看</a>
+                        <a href="survey-edit.html">编辑</a>
+                        <a href="survey-filter.html">提交</a>
+                        <a data-toggle="modal" data-target="#addModal" href="#addModal">加入模版</a>
+                        <a href="survey-view.html?tab=2">查看收集设置</a>
+                        <a href="#copyModal" data-toggle="modal" data-target="#copyModal">复制</a>
+                        <a href="#delModal" data-toggle="modal" data-target="#delModal">删除</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <a href="#">App使用习惯调查-副本 / 285109</a>
+                      </td>
+                      <td>2017-06-13 09:19:15</td>
+                      <td>0/100</td>
+                      <td>
+                        <span class="label label-success">发布中</span>
+                      </td>
+                      <td>网页</td>
+                      <td>
+                        <a href="survey-view.html">查看</a>
+                        <a href="survey-view.html?tab=3">问卷链接</a>
+                        <a href="survey-result.html">答卷数据</a>
+                        <a data-toggle="modal" data-target="#addModal" href="#addModal">加入模版</a>
+                        <a href="survey-view.html?tab=2">查看收集设置</a>
+                        <a href="#copyModal" data-toggle="modal" data-target="#copyModal">复制</a>
+                        <a href="#closeModal" data-toggle="modal" data-target="#closeModal">关闭</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <a href="#">App使用习惯调查-副本 / 285109</a>
+                      </td>
+                      <td>2017-06-13 09:19:15</td>
+                      <td>0/100</td>
+                      <td>
+                        <span class="label label-warning">审核中</span>
+                      </td>
+                      <td>网页</td>
+                      <td>
+                        <a href="survey-view.html">查看</a>
+                        <a href="survey-view.html?tab=3">问卷链接</a>
+                        <a href="survey-result.html">答卷数据</a>
+                        <a data-toggle="modal" data-target="#addModal" href="#addModal">加入模版</a>
+                        <a href="survey-view.html?tab=2">查看收集设置</a>
+                        <a href="#copyModal" data-toggle="modal" data-target="#copyModal">复制</a>
+                        <a href="#closeModal" data-toggle="modal" data-target="#closeModal">关闭</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <a href="#">App使用习惯调查-副本 / 285109</a>
+                      </td>
+                      <td>2017-06-13 09:19:15</td>
+                      <td>0/0</td>
+                      <td>
+                        <span class="label label-default">不通过</span>
+                      </td>
+                      <td>短信</td>
+                      <td>
+                        <a href="survey-view.html?tab=3">查看</a>
+                        <a href="survey-edit.html">编辑</a>
+                        <a href="survey-filter.html">提交</a>
+                        <a data-toggle="modal" data-target="#addModal" href="#addModal">加入模版</a>
+                        <a href="survey-view.html?tab=2">查看收集设置</a>
+                        <a href="#copyModal" data-toggle="modal" data-target="#copyModal">复制</a>
+                        <a href="#delModal" data-toggle="modal" data-target="#delModal">删除</a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- 页码 -->
+              <nav class="navigation-area" aria-label="Page navigation">
+                <ul class="pagination">
+                  <li>
+                    <a href="#" aria-label="Previous">
+                      <span aria-hidden="true">&laquo;</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">1</a>
+                  </li>
+                  <li>
+                    <a href="#">2</a>
+                  </li>
+                  <li>
+                    <a href="#">3</a>
+                  </li>
+                  <li>
+                    <a href="#">4</a>
+                  </li>
+                  <li>
+                    <a href="#">5</a>
+                  </li>
+                  <li>
+                    <a href="#" aria-label="Next">
+                      <span aria-hidden="true">&raquo;</span>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- footer -->
+      <div id="footer"></div>
+      <script>
+        $(function () {
+          $('#footer').load('component/footer.html .footer')
+        });
+      </script>
+    </div>
+    <!-- 弹出层 -->
+    <div class="modal fade" tabindex="-1" role="dialog" id="delModal">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title">操作提示</h4>
+          </div>
+          <div class="modal-body">
+            <p>问卷删除后不可恢复，确定删除？</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            <button type="button" class="btn btn-primary">确认</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" tabindex="-1" role="dialog" id="closeModal">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title">操作提示</h4>
+          </div>
+          <div class="modal-body">
+            <p>问卷关闭后不可恢复，确定关闭问卷？</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            <button type="button" class="btn btn-primary">确认</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" tabindex="-1" role="dialog" id="copyModal">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title">操作提示</h4>
+          </div>
+          <div class="modal-body">
+            <p>确认复制当前问卷
+              <span id="copyTitle"></span>
+              ？</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            <button type="button" class="btn btn-primary">确认</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" tabindex="-1" role="dialog" id="addModal">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title">加入模版</h4>
+          </div>
+          <div class="modal-body">
+            <div class="form-inline">
+              <div class="form-group">
+                <label>选择模版分类：</label>
+                <select class="form-control" name="">
+                  <option value="">请选择分类</option>
+                  <option value="">产品调研前</option>
+                  <option value="">产品调研后</option>
+                  <option value="">产品发布前</option>
+                  <option value="">产品发布后</option>
+                  <option value="">其它</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            <button type="button" class="btn btn-primary">确认</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="js/jquery.common.js"></script>
+    <script>
+      $(function () {
+        //加入模版分类确认事件
+        $('#addModal').on('show.bs.modal', function (event) {
+          var btn = $(event.relatedTarget);
+          var modal = $(this);
+          modal.find('.btn-primary').on('click', function (event) {
+            event.preventDefault();
+            /* 添加保存事件 */
+            modal.modal('hide');
+          });
+        });
+        $('#addModal').on('hidden.bs.modal', function (event) {
+          var modal = $(this);
+          modal.find('.btn-primary').off('click');
+        });
+        //复制操作
+        $('#copyModal').on('show.bs.modal', function (event) {
+          var btn = $(event.relatedTarget);
+          var title = btn.parent().parent('tr').children('td').first().children('a').text();
+          var modal = $(this);
+          modal.find('#copyTitle').text(title);
+          modal.find('.btn-primary').on('click', function (event) {
+            event.preventDefault();
+            modal.modal('hide');
+            /* 复制事件  */
+          });
+        });
+        $('#copyModal').on('hidden.bs.modal', function (event) {
+          var modal = $(this);
+          modal.find('.btn-primary').off('click');
+        });
+        //删除操作
+        $('#delModal').on('show.bs.modal', function (event) {
+          var btn = $(event.relatedTarget);
+          var modal = $(this);
+          modal.find('.btn-primary').on('click', function (event) {
+            event.preventDefault();
+            btn.parent().parent('tr').remove();
+            modal.modal('hide');
+          });
+        });
+        $('#delModal').on('hidden.bs.modal', function (event) {
+          var modal = $(this);
+          modal.find('.btn-primary').off('click');
+        });
+        //关闭操作
+        $('#closeModal').on('show.bs.modal', function (event) {
+          var btn = $(event.relatedTarget);
+          var modal = $(this);
+          modal.find('.btn-primary').on('click', function (event) {
+            event.preventDefault();
+            modal.modal('hide');
+          });
+        });
+        $('#closeModal').on('hidden.bs.modal', function (event) {
+          var modal = $(this);
+          modal.find('.btn-primary').off('click');
+        });
+      })
+    </script>
+  </body>
+</html>

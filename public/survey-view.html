@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=EDGE">
+    <title>问卷查看</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/common.css">
+    <script src="js/jquery.min.js"></script>
+  </head>
+  <body>
+    <div class="wapper">
+      <!-- header -->
+      <div id="header"></div>
+      <script>
+        $(function () {
+          $('#header').load('component/header.html .header');
+        });
+      </script>
+      <!-- 正文 -->
+      <div class="content-wapper">
+        <!-- 菜单 -->
+        <div id="sidebar"></div>
+        <script>
+          $(function () {
+            $('#sidebar').load('component/sidebar.html .sidebar', function () {
+              $('#collapseOne').collapse('show');
+              $('.click-group-list').addClass('active');
+            });
+          });
+        </script>
+        <!-- 内容区 -->
+        <div class="m-container">
+          <ol class="breadcrumb">
+            <li>
+              <a href="survey-list.html">问卷调查</a>
+            </li>
+            <li class="active">问卷查看</li>
+          </ol>
+          <div class="content">
+            <div class="m-summary">
+              <p>市场调查-副本</p>
+              <span>当前状态：编辑中</span>
+              <span>问卷在线时长：0天0小时0分钟</span>
+              <span>已收集有效问卷：0份</span>
+            </div>
+            <div class="m-content" id="myTabs">
+              <div id="myTabs-button" class="myTabs-button hide">
+                <button type="button" class="btn btn-warning mr" onclick="location.href='survey-view.html?tab=3'">立即发布</button>
+                <button type="button" class="btn btn-success mr" onclick="location.href='survey-edit.html'">审批通过</button>
+                <button type="button" class="btn btn-danger mr" onclick="location.href='survey-edit.html'">退回申请</button>
+              </div>
+              <!-- Nav tabs -->
+              <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active">
+                  <a href="#home" aria-controls="home" role="tab" data-toggle="tab">问卷信息</a>
+                </li>
+                <li role="presentation">
+                  <a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">收集设置</a>
+                </li>
+                <li role="presentation">
+                  <a href="#link" aria-controls="link" role="tab" data-toggle="tab">问卷链接</a>
+                </li>
+                <li role="presentation">
+                  <a href="#approve" aria-controls="approve" role="tab" data-toggle="tab">审批流程轨迹</a>
+                </li>
+              </ul>
+              <!-- Tab panes -->
+              <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active template-area" id="home">
+                  <iframe src="view-survey.html" width="100%" height="400" borderwidth='0' frameborder='0'></iframe>
+                </div>
+                <div role="tabpanel" class="tab-pane create-new-area" id="profile">
+                  <script>
+                    $('#profile').load('component/collect-set.html');
+                  </script>
+                </div>
+                <div role="tabpanel" class="tab-pane copy-area" id="link">
+                  <div class="copy-title">答卷地址:</div>
+                  <div class="input-group input-address-sm">
+                    <input type="text" class="form-control input-long" id="copyUrl" name="" placeholder="问卷发布后显示地址" value="http://localhost:3000/view-survey.html">
+                    <span class="input-group-btn">
+                      <button type="button" class="btn btn-info copy-btn" id="copyBtn" name="button" data-clipboard-target="#copyUrl">复制</button>
+                    </span>
+                  </div>
+                  <p>复制问卷链接，通过Email或聊天工具发送给被访人</p>
+                  <div class="copy-title">二维码:</div>
+                  <p>被访人扫描二维码，移动端回答问卷</p>
+                  <p><img src="images/ma.png" alt=""></p>
+                </div>
+                <div role="tabpanel" class="tab-pane create-new-area" id="approve">
+                  <script>
+                    $(function () {
+                      $('#approve').load('component/approve.html')
+                    })
+                  </script>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- footer -->
+      <div id="footer"></div>
+      <script>
+        $(function () {
+          $('#footer').load('component/footer.html .footer')
+        });
+      </script>
+    </div>
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+      $(function () {
+        function GetQueryString(name) {
+          var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+          var r = window.location.search.substr(1).match(reg);
+          if (r != null)
+            return unescape(r[2]);
+          return null;
+        }
+        //通过参数判断展示哪个选项卡
+        var i = GetQueryString('tab');
+        if (i !== null && i.toString().length > 0) {
+          i -= 1;
+          $('#myTabs .nav-tabs li:eq(' + i + ') a').tab('show')
+        }
+        $('#myTabs a').click(function (e) {
+          e.preventDefault();
+        })
+        //通过参数判断是不是超级管理员或者是手机数据
+        var p = GetQueryString('auth');
+        if (p !== null && p.toString() === 'super') {
+          $('#sidebar').load('component/sidebar.html .sidebar', function () {
+            $('#collapseOne').collapse('show');
+            $('.click-group-wait').addClass('active');
+          });
+          $('#myTabs-button').removeClass('hide');
+        } else if (p !== null && p.toString() === 'superok') {
+          $('#sidebar').load('component/sidebar.html .sidebar', function () {
+            $('#collapseOne').collapse('show');
+            $('.click-group-ok').addClass('active');
+          });
+        } else if (p !== null && p.toString() === 'phone') {
+          $('#sidebar').load('component/sidebar.html .sidebar', function () {
+            $('#collapseTwo').collapse('show');
+            $('.click-group-frequency').addClass('active');
+          });
+        }
+      })
+    </script>
+
+    <script src="js/clipboard.min.js"></script>
+    <script src="js/tooltip.js"></script>
+    <script>
+      var clipboard = new Clipboard('.btn');
+      clipboard.on('success', function (e) {
+        showTooltip(e.trigger, '复制成功!')
+        e.clearSelection();
+      });
+
+      clipboard.on('error', function (e) {
+        showTooltip(e.trigger, fallbackMessage(e.action));
+      });
+    </script>
+  </body>
+</html>

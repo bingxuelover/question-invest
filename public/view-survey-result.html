@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=EDGE">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>问卷标题</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/view.css">
+    <style>
+    .survey-result{ padding: 20px; text-align: left; min-height: 200px; _height: 200px; font-size: 16px;}
+    </style>
+  </head>
+  <body>
+    <div class="container-fluid wapper-survey">
+      <a class="survey-paper-clip"></a>
+      <div class="survey-title">
+        问卷标题
+      </div>
+      <div class="survey-result">
+        答题成功！
+      </div>
+      <div class="survey-ques-btn form-group">
+        <button class="btn" type="button">关闭</button>
+      </div>
+    </div>
+    <script>
+      $(document).ready(function () {
+        $('input').iCheck({checkboxClass: 'icheckbox_square-aero', radioClass: 'iradio_square-aero'});
+        $('#btnSubmit').on('click', function () {})
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=EDGE">
+    <title>问卷调查-编辑问卷</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/common.css">
+    <!-- <link rel="stylesheet/less" href="css/common.less">
+    <script>
+      less = {
+        env: "development",
+        async: false,
+        fileAsync: false,
+        poll: 1000,
+        functions: {},
+        dumpLineNumbers: "comments",
+        relativeUrls: false,
+        rootpath: "/localhost:3000/"
+      };
+    </script>
+    <script src="jsc/less.min.js"></script> -->
+    <script src="js/jquery.min.js"></script>
+  </head>
+  <body>
+    <div class="wapper">
+      <!-- header -->
+      <div id="header"></div>
+      <script>
+        $(function () {
+          $('#header').load('component/header.html .header');
+        });
+      </script>
+      <!-- 正文 -->
+      <div class="content-wapper">
+        <!-- 内容区 -->
+        <div class="m-container m-content-edit">
+          <ol class="breadcrumb">
+            <li>
+              <a href="survey-list.html">问卷调查</a>
+            </li>
+            <li class="active">编辑问卷</li>
+          </ol>
+          <div class="content">
+            <div class="m-banner">
+              <ul class="survey-nav">
+                <li class="active">
+                  <div class="survey-nav-icon">1</div>
+                  <div class="survey-nav-name">设计问卷</div>
+                  <div class="survey-nav-line"></div>
+                </li>
+                <li>
+                  <div class="survey-nav-icon">2</div>
+                  <div class="survey-nav-name">收集设置</div>
+                  <div class="survey-nav-line"></div>
+                </li>
+                <li>
+                  <div class="survey-nav-icon">3</div>
+                  <div class="survey-nav-name">编辑完成</div>
+                </li>
+              </ul>
+            </div>
+            <div class="m-content">
+              <!-- 编辑区 -->
+              <div class="edit-area">
+                <div class="edit-list">
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <h3 class="panel-title">题型选择</h3>
+                    </div>
+                    <div class="panel-body">
+                      <ul class="list-group edit-icon">
+                        <li class="list-group-item edit-icon-1" data-role="single-type" data-title="单选题" onclick="addQuestion(this,'single-type',true,1)">单选题</li>
+                        <li class="list-group-item edit-icon-2" data-role="select-type" data-title="下拉选择题" onclick="addQuestion(this,'select-type',true,2)">下拉选择题</li>
+                        <li class="list-group-item edit-icon-3" data-role="checkbox-type" data-title="多选题" onclick="addQuestion(this,'checkbox-type',true,1)">多选题</li>
+                        <li class="list-group-item edit-icon-4" data-role="text-type" data-title="单行填空题" onclick="addQuestion(this,'text-type',true,2)">单行填空题</li>
+                        <li class="list-group-item edit-icon-5" data-role="list-type" data-title="多行填空题" onclick="addQuestion(this,'list-type',true,2)">多行填空题</li>
+                        <li class="list-group-item edit-icon-6" data-role="table-radio" data-title="矩阵单选题" onclick="addQuestion(this,'table-radio',true,1)">矩阵单选题</li>
+                        <li class="list-group-item edit-icon-7" data-role="table-checkbox" data-title="矩阵多选题" onclick="addQuestion(this,'table-checkbox',true,1)">矩阵多选题</li>
+                        <li class="list-group-item edit-icon-8" data-role="single-img" data-title="图片单选" onclick="addQuestion(this,'single-img',true,2)">图片单选</li>
+                        <li class="list-group-item edit-icon-9" data-role="list-img" data-title="图片多选" onclick="addQuestion(this,'list-img',true,2)">图片多选</li>
+                        <li class="list-group-item edit-icon-10" data-role="textarea-type" data-title="描述说明" onclick="addQuestion(this,'textarea-type',false,3)">描述说明</li>
+                        <li class="list-group-item edit-icon-12" data-role="line-radio" data-title="量表题" onclick="addQuestion(this,'line-radio',true,3)">量表题</li>
+                        <li class="list-group-item edit-icon-11" data-role="line-radio" data-title="分页符" onclick="addQuestion(this,'page-line',false,3)">分页符</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="edit-content">
+                  <div class="edit-con-title edit-bor edit-box" contenteditable="true" onclick="editDiv(event,this,0)">市场调查-副本</div>
+                  <div class="edit-con-sum edit-bor">
+                    <div class="edit-box" contenteditable="true" onclick="editDiv(event,this,1)">
+                      为了给您提供更好的服务，希望您能抽出几分钟时间，将您的感受和建议告诉我们，我们非常重视每位用户的宝贵意见，期待您的参与！现在我们就马上开始吧！
+                    </div>
+                  </div>
+                  <!-- 编辑内容区 -->
+                  <div class="edit-con" id="editArea">
+                    <div class="edit-con-init hide">点击左侧题型，以添加题目到此空白区域</div>
+                    <!-- 内容展示区域 -->
+                  </div>
+                  <div class="edit-botton edit-bor">
+                    <div class="page-line-area">
+                      页码:1/1
+                    </div>
+                    <a role="button" class="btn btn-info" href="preview-survey.html?tab=2" target="_blank">预览问卷</a>
+                    <button type="button" class="btn btn-primary" onclick="location.href='survey-filter.html'">下一步</button>
+                  </div>
+                </div>
+                <div class="edit-questions">
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <h3 class="panel-title">
+                        题库
+                      </h3>
+                    </div>
+                    <div class="panel-body">
+                      <div class="panel-group" id="questionId" role="tablist" aria-multiselectable="true">
+                        <script>
+                          var dataSex = [
+                            {
+                              'val': 1,
+                              'txt': '男'
+                            }, {
+                              'val': 2,
+                              'txt': '女'
+                            }
+                          ];
+                          var dataIncome = [
+                            {
+                              'val': 1,
+                              'txt': '2000以下'
+                            }, {
+                              'val': 2,
+                              'txt': '2000-5000'
+                            }, {
+                              'val': 3,
+                              'txt': '5001-8000'
+                            }, {
+                              'val': 4,
+                              'txt': '8001-10000'
+                            }, {
+                              'val': 5,
+                              'txt': '10000以上'
+                            }
+                          ]
+                        </script>
+                        <div class="panel panel-default list-collect">
+                          <div class="panel-heading" role="tab" id="headingOne">
+                            <h4 class="panel-title">
+                              <span class="icon-question"></span>
+                              <a class="collapsed" role="button" data-toggle="collapse" data-parent="#questionId" href="#collapse0" aria-expanded="false" aria-controls="collapse0">
+                                收藏题目
+                              </a>
+                            </h4>
+                          </div>
+                          <div id="collapse0" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                            <div class="panel-body">
+                              <ul>
+                                <li>
+                                  <div class="panel-body-title" data-title="您的收入？" onclick="addQuestion(this,'select-type',true,2,dataIncome)">
+                                    <span class="glyphicon glyphicon-list" aria-hidden="true"></span>收入
+                                  </div>
+                                  <a
+                                    class="glyphicon glyphicon-info-sign"
+                                    href="javascript:void(0)"
+                                    role="button"
+                                    tabindex="0"
+                                    data-toggle="popover"
+                                    data-content="您的收入？【下拉框题】<br>2000以下<br>2000-5000<br>5001-8000<br>8001-10000<br>10000以上<br>10000以上<br>10000以上<br>10000以上<br>10000以上<br>..."></a>
+                                  <span class="glyphicon glyphicon-remove-circle icon-remove" data-toggle="modal" data-target="#modalRemove"></span>
+                                </li>
+                                <li>
+                                  <div class="panel-body-title" data-title="您的性别？" onclick="addQuestion(this,'select-type',true,2,dataSex)">性别</div>
+                                  <a class="glyphicon glyphicon-info-sign" href="javascript:void(0)" role="button" tabindex="1" data-toggle="popover" data-content="您的性别？【下拉框题】<br>男<br>女"></a>
+                                  <span class="glyphicon glyphicon-remove-circle icon-remove" data-toggle="modal" data-target="#modalRemove"></span>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="panel panel-default list-user">
+                          <div class="panel-heading" role="tab" id="headingTwo">
+                            <h4 class="panel-title">
+                              <span class="icon-question"></span>
+                              <a class="collapsed" role="button" data-toggle="collapse" data-parent="#questionId" href="#collapse1" aria-expanded="false" aria-controls="collapse1">
+                                人口属性
+                              </a>
+                            </h4>
+                          </div>
+                          <div id="collapse1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                            <div class="panel-body">
+                              <ul>
+                                <li>
+                                  <div class="panel-body-title" data-title="您的收入？" onclick="addQuestion(this,'select-type',true,2,dataIncome)">
+                                    <span class="glyphicon glyphicon-list" aria-hidden="true"></span>收入
+                                  </div>
+                                  <a
+                                    class="glyphicon glyphicon-info-sign"
+                                    href="javascript:void(0)"
+                                    role="button"
+                                    tabindex="0"
+                                    data-toggle="popover"
+                                    data-content="您的收入？【下拉框题】<br>2000以下<br>2000-5000<br>5001-8000<br>8001-10000<br>10000以上<br>10000以上<br>10000以上<br>10000以上<br>10000以上<br>..."></a>
+                                </li>
+                                <li>
+                                  <div class="panel-body-title" data-title="您的性别？" onclick="addQuestion(this,'select-type',true,2,dataSex)">性别</div>
+                                  <a class="glyphicon glyphicon-info-sign" href="javascript:void(0)" role="button" tabindex="1" data-toggle="popover" data-content="您的性别？【下拉框题】<br>男<br>女"></a>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="panel panel-default list-contact">
+                          <div class="panel-heading" role="tab" id="headingThree">
+                            <h4 class="panel-title">
+                              <span class="icon-question"></span>
+                              <a class="collapsed" role="button" data-toggle="collapse" data-parent="#questionId" href="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                                用户联系方式
+                              </a>
+                            </h4>
+                          </div>
+                          <div id="collapse2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                            <div class="panel-body">
+                              <ul>
+                                <li>
+                                  <div class="panel-body-title" data-title="您的手机号是？" onclick="addQuestion(this,'text-type',true,2)">手机号</div>
+                                  <a class="glyphicon glyphicon-info-sign" href="javascript:void(0)" role="button" tabindex="0" data-toggle="popover" data-content="您的手机号是？【单行输入框】<br>输入框"></a>
+                                </li>
+                                <li>
+                                  <div class="panel-body-title" data-title="您的邮箱是？" onclick="addQuestion(this,'text-type',true,2)">邮箱</div>
+                                  <a class="glyphicon glyphicon-info-sign" href="javascript:void(0)" role="button" tabindex="1" data-toggle="popover" data-content="您的邮箱是？【单行输入框】<br>输入框"></a>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="panel panel-default list-web">
+                          <div class="panel-heading" role="tab" id="headingFour">
+                            <h4 class="panel-title">
+                              <span class="icon-question"></span>
+                              <a class="collapsed" role="button" data-toggle="collapse" data-parent="#questionId" href="#collapse3" aria-expanded="false" aria-controls="collapse3">
+                                上网行为
+                              </a>
+                            </h4>
+                          </div>
+                          <div id="collapse3" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+                            <div class="panel-body">
+                              <script>
+                                var dataPosition = [
+                                  {
+                                    'val': 1,
+                                    'txt': '家里'
+                                  }, {
+                                    'val': 2,
+                                    'txt': '公司'
+                                  }, {
+                                    'val': 3,
+                                    'txt': '商场'
+                                  }
+                                ]
+                              </script>
+                              <ul>
+                                <li>
+                                  <div class="panel-body-title" data-title="您的上网地点是？" onclick="addQuestion(this,'checkbox-type',true,1,dataPosition)">收集上网地点</div>
+                                  <a class="glyphicon glyphicon-info-sign" href="javascript:void(0)" role="button" tabindex="5" data-toggle="popover" data-content="您的上网地点是？【多选框题】<br>家里<br>公司<br>商场"></a>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="panel panel-default list-product">
+                          <div class="panel-heading" role="tab" id="headingFive">
+                            <h4 class="panel-title">
+                              <span class="icon-question"></span>
+                              <a class="collapsed" role="button" data-toggle="collapse" data-parent="#questionId" href="#collapse4" aria-expanded="false" aria-controls="collapse4">
+                                产品使用背景
+                              </a>
+                            </h4>
+                          </div>
+                          <div id="collapse4" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
+                            <div class="panel-body">
+                              <ul></ul>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="panel panel-default list-satisfy">
+                          <div class="panel-heading" role="tab" id="headingSix">
+                            <h4 class="panel-title">
+                              <span class="icon-question"></span>
+                              <a class="collapsed" role="button" data-toggle="collapse" data-parent="#questionId" href="#collapse5" aria-expanded="false" aria-controls="collapse5">
+                                满意度
+                              </a>
+                            </h4>
+                          </div>
+                          <div id="collapse5" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSix">
+                            <div class="panel-body">
+                              <script>
+                                var dataDegree = {
+                                  'type': '满意度',
+                                  'number': 5
+                                }
+                              </script>
+                              <ul>
+                                <li>
+                                  <div class="panel-body-title" data-title="总体来说，您对XX的满意程度是？" onclick="addQuestion(this,'line-radio',true,3,dataDegree)">总体满意度</div>
+                                  <a class="glyphicon glyphicon-info-sign" href="javascript:void(0)" role="button" tabindex="6" data-toggle="popover" data-content="总体来说，您对XX的满意程度是？【量表题】<br>5"></a>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="panel panel-default list-phone">
+                          <div class="panel-heading" role="tab" id="headingSeven">
+                            <h4 class="panel-title">
+                              <span class="icon-question"></span>
+                              <a class="collapsed" role="button" data-toggle="collapse" data-parent="#questionId" href="#collapse6" aria-expanded="false" aria-controls="collapse6">
+                                移动端使用情况
+                              </a>
+                            </h4>
+                          </div>
+                          <div id="collapse6" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSeven">
+                            <div class="panel-body">
+                              <ul></ul>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="panel panel-default list-friend">
+                          <div class="panel-heading" role="tab" id="headingEight">
+                            <h4 class="panel-title">
+                              <span class="icon-question"></span>
+                              <a class="collapsed" role="button" data-toggle="collapse" data-parent="#questionId" href="#collapse7" aria-expanded="false" aria-controls="collapse7">
+                                好友关系链
+                              </a>
+                            </h4>
+                          </div>
+                          <div id="collapse7" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingEight">
+                            <div class="panel-body">
+                              <ul></ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- footer -->
+      <div id="footer"></div>
+      <script>
+        $(function () {
+          $('#footer').load('component/footer.html .footer')
+        });
+      </script>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="myModalSet" tabindex="-1" role="dialog" aria-labelledby="myModalLabelSet">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title" id="myModalLabelSet">逻辑设置</h4>
+          </div>
+          <div class="modal-body form-set" id="modalSet"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            <button type="button" class="btn btn-primary">保存</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="myModalQuestion" tabindex="-1" role="dialog" aria-labelledby="myModalLabelQues">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title" id="myModalLabelQues">题目设置</h4>
+          </div>
+          <div class="modal-body" id="modalQues"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            <button type="button" class="btn btn-primary">保存</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="modalInput" tabindex="-1" role="dialog" aria-labelledby="myModalLabelInput">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title" id="myModalLabelInput">选项设置</h4>
+          </div>
+          <div class="modal-body form-group">
+            <div class="checkbox">
+              <label><input type="checkbox" id="checkInput" name="" value="" onchange="checkInput(this)">
+                选项后增加填空框</label>
+            </div>
+            <div class="checkbox hide">
+              <label><input type="checkbox" checked name="" value="">
+                填空框可跳过不答</label>
+            </div>
+            <input type="hidden" id="elmDiv" name="" value="">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            <button type="button" class="btn btn-primary">保存</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="myModalCollect" tabindex="-1" role="dialog" aria-labelledby="myModalLabelCollect">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title" id="myModalLabelCollect">题库收藏设置</h4>
+          </div>
+          <div class="modal-body form-group">
+            <div class="dropdown form-inline">
+              <label>题库分类：</label>
+              <button class="btn btn-info" id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-container="">
+                题型选择
+                <span class="caret"></span>
+              </button>
+              <ul class="list-group dropdown-menu" aria-labelledby="dLabel">
+                <li>
+                  <a href="javascript:void(0)" data-val="0">全部类别</a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)" data-val="1">人口属性</a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)" data-val="2">用户联系方式</a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)" data-val="3">上网行为</a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)" data-val="4">产品使用背景</a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)" data-val="5">满意度</a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)" data-val="6">移动端使用情况</a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)" data-val="7">好友关系链</a>
+                </li>
+              </ul>
+            </div>
+            <div class="form-inline">
+              <label>简短说明：</label>
+              <input type="text" class="form-control input-txt" name="collect-title" value="">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            <button type="button" class="btn btn-primary">保存</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="modalRemove" tabindex="-1" role="dialog" aria-labelledby="myModalRemove">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title" id="myModalRemove">提示</h4>
+          </div>
+          <div class="modal-body">
+            <div class="">
+              确认要删除这道题目吗？
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            <button type="button" class="btn btn-primary">确定</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.ui.js"></script>
+    <script src='js/jquery.editor.js'></script>
+    <script>
+      $(function () {
+        // select事件
+        $('.dropdown-menu').children('li').each(function (i, e) {
+          $(e).on('click', function () {
+            var child = $(e).children('a');
+            document.getElementById('dLabel').innerHTML = child.text() + ' <span class="caret"></span>';
+            $('#dLabel').attr('data-container', child.attr('data-val'));
+          })
+        })
+        //逻辑设置加载内容
+        $('#myModalSet').on('show.bs.modal', function (event) {
+          $('#modalSet').load('component/set.html')
+        })
+        //题目设置加载内容
+        $('#myModalQuestion').on('show.bs.modal', function (event) {
+          $('#modalQues').load('component/ques.html')
+        })
+        $('#myModalSet, #myModalQuestion').on('shown.bs.modal', function (event) {
+          var h = $(window).height() - 200;
+          $(this).find('.modal-body').css({'max-height': h, 'overflow-y': 'auto'})
+        })
+      })
+    </script>
+  </body>
+</html>

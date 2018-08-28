@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=EDGE">
+    <title>左侧列表</title>
+  </head>
+  <body>
+    <div class="sidebar">
+      <div class="list-group" id="leftBar" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-info">
+          <div class="panel-heading" role="tab" id="headingOne">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#leftBar" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">问卷调查</a>
+            </h4>
+          </div>
+          <div class="list-group panel-collapse collapse" id="collapseOne" role="tabpanel" aria-labelledby="headingOne">
+            <a href="../survey-list.html" class="list-group-item click-group-list">我的问卷</a>
+            <a href="../template-list.html" class="list-group-item click-group-temp">问卷模板</a>
+            <a href="../question-edit.html" class="list-group-item click-group-quesnew">新建题库</a>
+          </div>
+          <div class="panel-heading" role="tab" id="headingTwo">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#leftBar" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">手机号管理</a>
+            </h3>
+          </div>
+          <div class="list-group panel-collapse collapse" id="collapseTwo" role="tabpanel" aria-labelledby="headingTwo">
+            <a href="../phone-frequency.html" class="list-group-item click-group-frequency">样本频次查询</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

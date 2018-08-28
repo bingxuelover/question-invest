@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../css/text.css">
+    <title>示例</title>
+  </head>
+  <body class="g_wrapper g_wrapper_full page_text_editor">
+    <div class="">
+      <div id="tips">
+        <h3 class="sub_title">文本格式要求</h3>
+        <ol>
+          <li>矩阵题等需要加入题型标记才能正常识别</li>
+          <li>如果无法正确识别，请尝试在题目与题目间加入空行</li>
+        </ol>
+        <h3 class="sub_title">格式说明</h3>
+        <ul>
+          <li>题型符号：[标题]</li>
+          <li>题目描述：(题目描述)</li>
+          <li>分页符号：===分页===</li>
+        </ul>
+        <h3 class="sub_title">单选题型说明</h3>
+        <div class="example example_radio">
+          <div class="source">
+            <div>您使用什么系统的手机？[单选题](题目描述)</div>
+            <div>A.IOS</div>
+            <div>B.Android</div>
+            <div>C.Windows Phone</div>
+          </div>
+          <div class="dist">
+            <div>您使用什么系统的手机？</div>
+            <div class="desc">备注</div>
+            <div><input type="radio" disabled="">A.IOS</div>
+            <div><input type="radio" disabled="">B.Android</div>
+            <div><input type="radio" disabled="">C.Windows Phone</div>
+          </div>
+          <div class="arrow">→</div>
+        </div>
+        <h3 class="sub_title">多选题型说明</h3>
+        <div class="example example_checkbox">
+          <div class="source">
+            <div>您使用什么系统的手机？[多选题]</div>
+            <div>A.IOS</div>
+            <div>B.Android</div>
+            <div>C.Windows Phone</div>
+            <div>+D.其他</div>
+          </div>
+          <div class="dist">
+            <div>您使用什么系统的手机？</div>
+            <div><input type="checkbox" disabled="">A.IOS</div>
+            <div><input type="checkbox" disabled="">B.Android</div>
+            <div><input type="checkbox" disabled="">C.Windows Phone</div>
+            <div><input type="checkbox" disabled="">D.其他</div>
+          </div>
+          <div class="arrow">→</div>
+        </div>
+        <h3 class="sub_title">下拉题型说明</h3>
+        <div class="example example_select">
+          <div class="source">
+            <div>您使用什么系统的手机？[下拉题]</div>
+            <div>A.IOS</div>
+            <div>B.Android</div>
+            <div>C.Windows Phone</div>
+            <div>+D.其他</div>
+          </div>
+          <div class="dist">
+            <div>您使用什么系统的手机？</div>
+            <select disabled=""></select>
+          </div>
+          <div class="arrow">→</div>
+        </div>
+        <h3 class="sub_title">单行文本题型说明</h3>
+        <div class="example example_text">
+          <div class="source">
+            <div>评价原生Android手机系统？[单行文本题]</div>
+          </div>
+          <div class="dist">
+            <div>评价原生Android手机系统？</div>
+            <input type="text" disabled="">
+          </div>
+          <div class="arrow">→</div>
+        </div>
+        <h3 class="sub_title">多行文本题型说明</h3>
+        <div class="example example_textarea">
+          <div class="source">
+            <div>评价原生Android手机系统？[多行文本题]</div>
+          </div>
+          <div class="dist">
+            <div>评价原生Android手机系统？</div>
+            <textarea disabled=""></textarea>
+          </div>
+          <div class="arrow">→</div>
+        </div>
+        <h3 class="sub_title">矩阵单选题型说明</h3>
+        <div class="example example_matrix_radio">
+          <div class="source">
+            <div>评价原生Android手机系统？[矩阵单选题]</div>
+            <div>很好 一般 很差</div>
+            <div>美观性</div>
+            <div>实用性</div>
+          </div>
+          <div class="dist">
+            <div>评价原生Android手机系统？</div>
+            <table>
+              <tbody>
+                <tr>
+                  <td></td>
+                  <td>很好</td>
+                  <td>一般</td>
+                  <td>很差</td>
+                </tr>
+                <tr>
+                  <td>美观性</td>
+                  <td><input type="radio" disabled=""></td>
+                  <td><input type="radio" disabled=""></td>
+                  <td><input type="radio" disabled=""></td>
+                </tr>
+                <tr>
+                  <td>实用性</td>
+                  <td><input type="radio" disabled=""></td>
+                  <td><input type="radio" disabled=""></td>
+                  <td><input type="radio" disabled=""></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="arrow">→</div>
+        </div>
+        <h3 class="sub_title">矩阵多选题型说明</h3>
+        <div class="example example_matrix_checkbox">
+          <div class="source">
+            <div>评价原生Android手机系统？[矩阵多选题]</div>
+            <div>很好 一般 很差</div>
+            <div>美观性</div>
+            <div>实用性</div>
+          </div>
+          <div class="dist">
+            <div>评价原生Android手机系统？</div>
+            <table>
+              <tbody>
+                <tr>
+                  <td></td>
+                  <td>很好</td>
+                  <td>一般</td>
+                  <td>很差</td>
+                </tr>
+                <tr>
+                  <td>美观性</td>
+                  <td><input type="checkbox" disabled=""></td>
+                  <td><input type="checkbox" disabled=""></td>
+                  <td><input type="checkbox" disabled=""></td>
+                </tr>
+                <tr>
+                  <td>实用性</td>
+                  <td><input type="checkbox" disabled=""></td>
+                  <td><input type="checkbox" disabled=""></td>
+                  <td><input type="checkbox" disabled=""></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="arrow">→</div>
+        </div>
+        <h3 class="sub_title">量表题型说明</h3>
+        <div class="example example_star">
+          <div class="source">
+            <div>评价原生Android手机系统？[量表题]</div>
+            <div>5</div>
+          </div>
+          <div class="dist">
+            <div>评价下原生Android手机系统？</div>
+            <div>
+              <span class="tip">
+                (非常不满意)
+              </span>
+              <input type="radio" disabled="">
+              1
+              <input type="radio" disabled="">
+              2
+              <input type="radio" disabled="">
+              3
+              <input type="radio" disabled="">
+              4
+              <input type="radio" disabled="">
+              5
+              <span class="tip">
+                (非常满意)
+              </span>
+            </div>
+          </div>
+          <div class="arrow">→</div>
+        </div>
+        <h3 class="sub_title">段落说明题型说明</h3>
+        <div class="example example_description">
+          <div class="source" style="height: 30px">
+            <div>第一部分 基本信息[段落说明]</div>
+          </div>
+          <div class="dist" style="height: 30px">
+            第一部分 基本信息
+          </div>
+          <div class="arrow" style="top: 10px;">→</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

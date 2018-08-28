@@ -1,0 +1,339 @@
+<style>
+.inline { display: inline;}
+.line-set{ line-height: 28px;}
+.opthide{ display: none;}
+</style>
+<div class="form-horizontal" id="page-set">
+  <div class="subject-area-box">
+    <div class="subject-area type-check">
+      <span class="glyphicon glyphicon-plus-sign" onclick="sub.addSubject(this)"></span>
+      <div class="form-group">
+        <div class="form-inline">
+          <label class="col-sm-2 line-set">如果 本题</label>
+          <div class="col-sm-9">
+            <select class="form-control select-w-long input-sm" name="">
+              <option value="">请选择选项</option>
+            </select>
+            <span class="set-span">为</span>
+            <select class="form-control select-w-xs input-sm" name="">
+              <option value="">选中</option>
+              <option value="">未选中</option>
+            </select>
+          </div>
+          <div class="col-sm-1"></div>
+        </div>
+      </div>
+    </div>
+    <!-- start 2017-8 新增 -->
+    <div class="subject-area type-line" style="display:none;">
+      <span class="glyphicon glyphicon-plus-sign" onclick="sub.addSubject(this)"></span>
+      <div class="form-group">
+        <div class="form-inline">
+          <label class="col-sm-2 line-set">如果 本题</label>
+          <div class="col-sm-9 num-select">
+            选择
+            <select class="form-control select-w-xs input-sm num-min" name="" onchange="sub.changeSelect(this)">
+              <option value="0"></option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="99">其它项</option>
+              <option value="100">任意项</option>
+            </select>
+            <span class="set-span">—</span>
+            <select class="form-control select-w-xs input-sm num-max" value="" name="">
+              <option value="0"></option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="99" data-else="else" class="opthide">其它项</option>
+              <option value="100" data-else="any" class="opthide">任意项</option>
+            </select>
+          </div>
+          <div class="col-sm-1"></div>
+        </div>
+      </div>
+    </div>
+    <!-- 2017-8 新增 end -->
+    <div class="subject-area">
+      <span class="glyphicon glyphicon-plus-sign icon-addshow" onclick="sub.addShowSub(this)"></span>
+      <div class="form-group">
+        <div class="form-inline">
+          <label class="col-sm-2"></label>
+          <div class="col-sm-3">
+            <span class="set-span">则</span>
+            <select class="form-control select-w-xs input-sm" name="">
+              <option value="">显示</option>
+              <option value="">跳转</option>
+            </select>
+          </div>
+          <div class="col-sm-6 show-topic">
+            <div class="form-group">
+              <select class="form-control select-w-long input-sm" name="">
+                <option value="">请选择题目</option>
+              </select>
+              <span class="glyphicon glyphicon-minus-sign" onclick="sub.removeSubject(this,2)"></span>
+            </div>
+          </div>
+          <div class="col-sm-1"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="">
+  <a href="javascript:void(0)" onclick="addNewLogic('type-line')"></span>+ 点击添加新逻辑</a>
+</div>
+<script>
+$(function(){
+/* start 2017-8 新增 */
+  var type='type-line';
+  if(type==='type-line'){
+    $('.type-line').show();
+    $('.type-check').hide();
+  } else {
+    $('.type-line').hide();
+    $('.type-check').show();
+  }
+})
+/* 2017-8 新增 end */
+
+var sub = new subject();
+
+function subject() {}
+subject.prototype.addSubject = function (elm, type) {
+  var group = document.createElement('div');
+  group.className = 'form-group';
+  var html = '';
+  html += '<div class="form-inline">';
+  html += '<div class="col-sm-2">';
+  html += '<select class="form-control select-w-xs input-sm" name="">';
+  html += '<option value="">并且</option><option value="">或者</option>';
+  html += '</select>';
+  html += '</div><div class="col-sm-3">';
+  html += '<select class="form-control select-w-s input-sm" name="" onchange="sub.changeType(this)" data-name="select-type">';
+  html += '<option value="">请选择题目</option>';
+  html += '<option value="" data-max="10" data-min="1" data-type="line-radio">量表题</option>';
+  html += '<option value="">选项题</option>';
+  html += '</select></div>';
+  html += '<div class="col-sm-6">';
+  html += '<div class="check-type inline">';
+  html += '<select class="form-control select-w-s input-sm" name="">';
+  html += '<option value="">请选择选项</option>';
+  html += '<option value="">选项1</option>';
+  html += '<option value="">选项2</option>';
+  html += '</select>';
+  html += '<span class="set-span">为</span> ';
+  html += '<select class="form-control select-w-xs input-sm" name="">';
+  html += '<option value="">选中</option>';
+  html += '<option value="">未选中</option>';
+  html += '</select> </div>';
+  /* start 2017-8 新增 */
+  html += '<div class="line-type inline num-select" style="display:none;">';
+  html += '<select class="form-control select-w-xs input-sm num-min" name="" onchange="sub.changeSelect(this)">';
+  html += '  <option value="0"></option>';
+  html += '  <option value="1">1</option>';
+  html += '  <option value="2">2</option>';
+  html += '  <option value="3">3</option>';
+  html += '  <option value="99" data-else="else">其它项</option>';
+  html += '  <option value="100" data-else="any">任意项</option>';
+  html += '</select>';
+  html += '<span class="set-span">—</span>';
+  html += '<select class="form-control select-w-xs input-sm num-max" name="">';
+  html += '  <option value="0"></option>';
+  html += '  <option value="1">1</option>';
+  html += '  <option value="2">2</option>';
+  html += '  <option value="3">3</option>';
+  html += '  <option value="99" data-else="else" class="opthide">其它项</option>';
+  html += '  <option value="100" data-else="any" class="opthide">任意项</option>';
+  html += '</select>';
+  html += '</div>';
+  /* 2017-8 新增 end */
+  html += '<span class="glyphicon glyphicon-minus-sign" onclick="sub.removeSubject(this)"></span>';
+  html += '</div></div>';
+  group.innerHTML = html;
+  $(elm).parents('.subject-area').append($(group));
+}
+/* start 2017-8 新增 */
+subject.prototype.changeType = function(elm){
+  var sel = $(elm).children(':selected');
+  var type = sel.attr('data-type');
+  var p = $(elm).parent().next('div');
+  if(type == 'line-radio'){
+    p.children('.check-type').children('select').each(function(index, el) {
+      $(el).children('option').each(function(index, elmet) {
+        $(elmet).css('display','').removeAttr('selected');
+        if(index==0){$(elmet).attr('selected', true);}
+      });
+    });
+    p.children('.check-type').hide();
+    p.children('.line-type').show();
+  } else {
+    p.children('.line-type').children('select').each(function(index, el) {
+      $(el).removeAttr('disabled');
+      $(el).children('option').each(function(index, elmet) {
+        $(elmet).css('display','').removeAttr('selected');
+        if(index==0){$(elmet).attr('selected', true);}
+      });
+    });
+    p.children('.line-type').hide();
+    p.children('.check-type').show();
+  }
+}
+
+subject.prototype.changeSelect = function (elm) {
+  var i = elm.selectedIndex;
+  var val = $(elm).val();
+  var $next = $(elm).siblings('.num-max').eq(0);
+
+  var _changeSel = function(elm,type,$next){
+    if($(elm).attr('data-else')==type){
+      $(elm).show().attr('selected', true);
+    } else {
+      $(elm).hide().removeAttr('selected');
+    }
+    $next.attr('disabled', true);
+  }
+
+  $next.children('option').each(function(j, elm) {
+    switch (val) {
+      case '99':
+        _changeSel(elm,'else',$next);
+        break;
+      case '100':
+        _changeSel(elm,'any',$next);
+        break;
+      default:
+        $next.removeAttr('disabled');
+        if(j==0){
+          $(elm).show().attr('selected', true);
+        } else if($(elm).hasClass('opthide') || j<i){
+          $(elm).hide().removeAttr('selected');
+        } else {
+          $(elm).show().removeAttr('selected');
+        }
+    }
+  });
+}
+/* 2017-8 新增 end */
+subject.prototype.addShowSub = function (elm) {
+  var group = document.createElement('div');
+  group.className = 'form-group';
+  var html = '';
+  html += '<select class="form-control select-w-long input-sm" name="">';
+  html += '<option value="">请选择题目</option>';
+  html += '</select> ';
+  html += '<span class="glyphicon glyphicon-minus-sign" onclick="sub.removeSubject(this,2)"></span>';
+  group.innerHTML = html;
+  $(elm).parents('.subject-area').find('.show-topic').append($(group));
+}
+subject.prototype.removeSubject = function (elm, type) {
+  if (type === 2) {
+    var parent = $(elm).parent('.form-group');
+    var box = parent.parent('.show-topic');
+    if (box.children('.form-group').length == 1) {
+      parent.parents('.subject-area-box').remove();
+    } else {
+      parent.remove();
+    }
+  } else {
+    var parent = $(elm).parents('.form-group');
+    parent.remove();
+  }
+}
+
+function addNewLogic(type) {
+  var area = document.createElement('div');
+  area.className = 'subject-area-box';
+  var html = '';
+  /* start 2017-8 新增 */
+  if(type === 'type-line'){
+    html += '<div class="subject-area type-line">';
+    html += '<span class="glyphicon glyphicon-plus-sign" onclick="sub.addSubject(this)"></span>';
+    html += '<div class="form-group"><div class="form-inline">';
+    html += '<label class="col-sm-2 line-set">如果 本题</label>';
+    html += '<div class="col-sm-9 num-select"> 选择';
+    html += '  <select class="form-control select-w-xs input-sm num-min" name="" onchange="sub.changeSelect(this)">';
+    html += '    <option value="0"></option>';
+    html += '    <option value="1">1</option>';
+    html += '    <option value="2">2</option>';
+    html += '    <option value="3">3</option>';
+    html += '    <option value="4">4</option>';
+    html += '    <option value="5">5</option>';
+    html += '    <option value="6">6</option>';
+    html += '    <option value="7">7</option>';
+    html += '    <option value="8">8</option>';
+    html += '    <option value="9">9</option>';
+    html += '    <option value="99" data-else="else">其它项</option>';
+    html += '    <option value="100" data-else="any">任意项</option>';
+    html += '  </select>';
+    html += '  <span class="set-span">—</span>';
+    html += '  <select class="form-control select-w-xs input-sm num-max" value="" name="">';
+    html += '    <option value="0"></option>';
+    html += '    <option value="1">1</option>';
+    html += '    <option value="2">2</option>';
+    html += '    <option value="3">3</option>';
+    html += '    <option value="4">4</option>';
+    html += '    <option value="5">5</option>';
+    html += '    <option value="6">6</option>';
+    html += '    <option value="7">7</option>';
+    html += '    <option value="8">8</option>';
+    html += '    <option value="9">9</option>';
+    html += '    <option value="99" data-else="else" class="opthide">其它项</option>';
+    html += '    <option value="100" data-else="any" class="opthide">任意项</option>';
+    html += '  </select>';
+    html += '</div>';
+    html += '<div class="col-sm-1"></div>';
+    html += '</div></div></div>';
+  } else {
+    /* 2017-8 新增 end */
+    html += '<div class="subject-area type-check">';
+    html += '<span class="glyphicon glyphicon-plus-sign" onclick="sub.addSubject(this)"></span>';
+    html += '<div class="form-group"><div class="form-inline">';
+    html += '<label class="col-sm-2 line-set">如果 本题</label>';
+    html += '<div class="col-sm-5">';
+    html += '<select class="form-control select-w-s input-sm" name="">';
+    html += '<option value="">请选择选项</option>';
+    html += '</select></div><div class="col-sm-4">';
+    html += '<span class="set-span">为</span> ';
+    html += '<select class="form-control select-w-xs input-sm" name="">';
+    html += '<option value="">选中</option>';
+    html += '<option value="">未选中</option>';
+    html += '</select> ';
+    html += '</div>';
+    html += '<div class="col-sm-1"></div>';
+    html += '</div></div></div>';
+  }
+  html += '<div class="subject-area">';
+  html += '<span class="glyphicon glyphicon-plus-sign icon-addshow" onclick="sub.addShowSub(this)"></span>';
+  html += '<div class="form-group"><div class="form-inline">';
+  html += '<label class="col-sm-2"></label>';
+  html += '<div class="col-sm-3">';
+  html += '  <span class="set-span">则</span>';
+  html += '  <select class="form-control select-w-xs input-sm" name="">';
+  html += '    <option value="">显示</option>';
+  html += '    <option value="">跳转</option>';
+  html += '  </select>';
+  html += '</div><div class="col-sm-6 show-topic">';
+  html += '<div class="form-group">';
+  html += '<select class="form-control select-w-long input-sm" name="">';
+  html += '<option value="">请选择题目</option>';
+  html += '</select> ';
+  html += '<span class="glyphicon glyphicon-minus-sign" onclick="sub.removeSubject(this,2)"></span>';
+  html += '</div></div></div></div></div>';
+  area.innerHTML = html;
+  $('#page-set').append($(area));
+}
+</script>

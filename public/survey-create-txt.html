@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=EDGE">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>文本创建问卷</title>
+  </head>
+  <body>
+    <div class="edit-text-page">
+      <div class="edit-text-btn">
+        <button type="button" class="btn btn-info next-btn" name="button" onclick="location.href='survey-edit.html'">下一步</button>
+      </div>
+      <div class="edit-text-area col-xs-6 col-md-5">
+        <div class="edit-text-box">
+          <div class="edit-box" contenteditable="true">
+            <p>示例--问卷调研用户使用习惯调查</p>
+            <p>欢迎语</p>
+            <p></p>
+            <p>请问您最常用的创建问卷方式是？[单选题]</p>
+            <p>从空白问卷开始创建</p>
+            <p>使用已有的问卷模板</p>
+            <p>使用导入功能自动创建</p>
+            <p></p>
+            <p>以下特性中，您认为比较重要的是？[多选题]</p>
+            <p>创建方式多样</p>
+            <p>免费好用</p>
+            <p>在线实时统计</p>
+            <p>多终端自动适应显示</p>
+            <p></p>
+            <p>请您用一句话评价下河北移动问卷[单行文本题]</p>
+            <p></p>
+            <p>请为河北移动问卷评一下分[量表题] 5</p>
+          </div>
+        </div>
+        <div class="edit-text-btn">
+          <a class="next-btn" role="button" data-toggle="modal" href="#textPrimary">查看编辑示例</a>
+          <a class="" href="#" role="button">导出txt文档</a>
+        </div>
+      </div>
+      <div class="edit-text-view col-xs-6 col-md-7">
+        <div class="edit-text-view-box" id="viewPage">
+          <script>
+            $(function () {
+              $('#viewPage').load('view-survey.html .wapper-survey', function () {
+                $('.survey-ques-btn.form-group').hide();
+                $('head').append('<link rel="stylesheet" href="css/view-common.css">');
+              })
+            })
+          </script>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

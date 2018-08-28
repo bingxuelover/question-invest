@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=EDGE">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>问卷调查-创建问卷</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/common.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <div class="wapper">
+      <!-- header -->
+      <div id="header"></div>
+      <script>
+        $(function () {
+          $('#header').load('component/header.html .header');
+        });
+      </script>
+      <!-- 正文 -->
+      <div class="content-wapper">
+        <!-- 内容区 -->
+        <div class="m-container m-content-noleft">
+          <ol class="breadcrumb">
+            <li>
+              <a href="survey-list.html">问卷调查</a>
+            </li>
+            <li class="active">创建问卷</li>
+          </ol>
+          <div class="content" id="myTabs">
+            <div class="m-content">
+              <!-- Nav tabs -->
+              <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active">
+                  <a href="#home" aria-controls="home" role="tab" data-toggle="tab">引用模版问卷</a>
+                </li>
+                <li role="presentation">
+                  <a href="#text" aria-controls="profile" role="tab" data-toggle="tab">文本创建问卷</a>
+                </li>
+                <li role="presentation">
+                  <a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">创建空白问卷</a>
+                </li>
+              </ul>
+              <!-- Tab panes -->
+              <div class="tab-content">
+                <div role="tabpanel" class="tab-pane create-new-area active" id="home">
+                  <script>
+                    $(function () {
+                      $('#home').load('component/template.html');
+                    })
+                  </script>
+                </div>
+                <div role="tabpanel" class="tab-pane create-new-area" id="text">
+                  <script>
+                    $(function () {
+                      $('#text').load('survey-create-txt.html');
+                    })
+                  </script>
+                </div>
+                <div role="tabpanel" class="tab-pane create-new-area" id="profile">
+                  <div class="create-new-title">问卷标题</div>
+                  <input type="text" class="form-control input-lg" name="" placeholder="标题最多输入17个字" value="">
+                  <button type="button" class="btn btn-info create-new-btn" name="button" onclick="location.href='survey-edit.html'">创建问卷</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- footer -->
+      <div id="footer"></div>
+      <script>
+        $(function () {
+          $('#footer').load('component/footer.html .footer')
+        });
+      </script>
+    </div>
+
+    <script>
+      $(function () {
+        $('#myTabs a').click(function (e) {
+          e.preventDefault();
+          $(this).tab('show');
+        })
+      })
+    </script>
+    <div class="modal fade bs-example-modal-lg" id="textPrimary" tabindex="-1" role="dialog">
+      <div class="modal-dialog  modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title">示例</h4>
+          </div>
+          <div class="modal-body tip-page" id="tipPage">
+            <iframe src="component/text.html" width="98%" height="100%" frameborder="0"></iframe>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+          </div>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+  </body>
+</html>

@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=EDGE">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!--[if lte IE 6]> <link rel="stylesheet" href="css/bootstrap-ie6.min.css"> <link rel="stylesheet" href="css/ie.css"> <![endif]-->
+    <link rel="stylesheet" href="css/view.css">
+    <link rel="stylesheet" href="css/jquery-ui.min.css">
+    <script src="js/jquery.js"></script>
+    <script src="js/icheck.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <!--[if lt IE 9]> <script src="js/respond.min.js"></script> <![endif]-->
+    <title>问卷标题</title>
+    <style>
+      .fix-progress { position: fixed; top:0; left:0; width:100%; z-index: 1000000; text-align: center;}
+      .box-progress { margin: 0 auto; padding:10px 20px; width: 980px; text-align: left; font-size: 14px; background-color:#ffffef; position: relative;}
+      div.ui-widget.ui-widget-content {
+        border: 1px solid #c5c5c5;
+      }
+      .ui-corner-all, .ui-corner-bottom, .ui-corner-right, .ui-corner-br {
+          border-bottom-right-radius: 3px;
+      }
+      .ui-corner-all, .ui-corner-bottom, .ui-corner-left, .ui-corner-bl {
+          border-bottom-left-radius: 3px;
+      }
+      .ui-corner-all, .ui-corner-top, .ui-corner-right, .ui-corner-tr {
+          border-top-right-radius: 3px;
+      }
+      .ui-corner-all, .ui-corner-top, .ui-corner-left, .ui-corner-tl {
+          border-top-left-radius: 3px;
+      }
+      .ui-widget-header {
+          border: 1px solid #dddddd;
+          background: #e9e9e9;
+          color: #333333;
+          font-weight: bold;
+      }
+      #progressbar{ width: 50%; height: 20px;}
+      #progressbar .ui-progressbar-value { background-color: #d9f1f5;}
+      .progress-num{ position: absolute; margin-left: 20px; left: 50%; top: 10px;}
+      @media screen and (max-width: 980px) {
+        /* 手机端样式 */
+        .box-progress { width:100%; padding: 5px 10px;}
+        .progress-num { top: 2px; font-size: 12px;}
+        #progressbar{ height: 12px;}
+      }
+    </style>
+    <script>
+    $(function () {
+      var per = 2/5;
+      $( "#progressbar" ).progressbar({
+      	value: Math.floor(per * 100)
+      });
+    })
+    </script>
+  </head>
+  <body>
+    <div class="fix-progress">
+      <div class="box-progress">
+        <div id="progressbar"></div>
+        <div class="progress-num">
+          <span>2</span> / 5
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid wapper-survey">
+      <a class="survey-paper-clip"></a>
+      <div class="survey-title">
+        问卷标题
+      </div>
+      <div class="survey-info">
+        为了给您提供更好的服务，希望您能抽出几分钟时间，将您的感受和建议告诉我们，我们非常重视每位用户的宝贵意见，期待您的参与！现在我们就马上开始吧！
+        <br>声明：河北移动不会以任何理由索要您的账号、密码、身份等敏感信息，请确认邀请人是否可靠，防止个人信息泄露
+      </div>
+      <div class="survey-erea">
+        <div class="survey-question">
+          <div class="survey-ques-title">
+            1. 单选题
+          </div>
+          <div class="survey-ques-con">
+            <div class="survey-ques-warning">请按要求作答</div>
+            <div class="form-group">
+              <div class="survey-ques-li radio">
+                <label class="radio-label">
+                  <input type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">选项1
+                </label>
+              </div>
+              <div class="survey-ques-li radio">
+                <label class="radio-label">
+                  <input type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">选项2
+                </label>
+              </div>
+              <div class="form-inline survey-ques-li radio">
+                <label class="radio-label">
+                  <input type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">选项3
+                  <input type="text" class="form-control inline-text">
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="survey-question">
+          <div class="survey-ques-title">
+            2. 多选题
+          </div>
+          <div class="survey-ques-con">
+            <div class="survey-ques-warning">请按要求作答</div>
+            <div class="form-group">
+              <div class="survey-ques-li checkbox">
+                <label class="checkbox-label">
+                  <input type="checkbox" id="blankCheckbox" value="option1" aria-label="...">选项1
+                </label>
+              </div>
+              <div class="survey-ques-li checkbox">
+                <label class="checkbox-label">
+                  <input type="checkbox" id="blankCheckbox" value="option1" aria-label="...">选项2
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="survey-question">
+          <div class="survey-ques-title">
+            3. 单行填空题
+          </div>
+          <div class="survey-ques-con">
+            <div class="survey-ques-warning">请按要求作答</div>
+            <div class="form-group">
+              <div class="survey-ques-li">
+                <input type="text" class="form-control" placeholder="Text input">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="survey-question">
+          <div class="survey-ques-title">
+            4. 文本框
+          </div>
+          <div class="survey-ques-con">
+            <div class="survey-ques-warning">请按要求作答</div>
+            <div class="form-group">
+              <div class="survey-ques-li">
+                <textarea class="form-control" rows="3"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="survey-question">
+          <div class="survey-ques-title">
+            5. 量表题
+          </div>
+          <div class="survey-ques-con radio-inline-box">
+            <div class="survey-ques-warning">请按要求作答</div>
+            <div class="form-group group-box-inline">
+              <div class="survey-ques-li form-inline list-type-box">
+                <span class="list-type-right">很满意</span>
+                <label class="radio-label radio inline">
+                  <div class="radio-inline">
+                    <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                    1
+                  </div>
+                </label>
+                <label class="radio-label radio inline">
+                  <div class="radio-inline">
+                    <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                    2
+                  </div>
+                </label>
+                <label class="radio-label radio inline">
+                  <div class="radio-inline">
+                    <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
+                    3
+                  </div>
+                </label>
+                <label class="radio-label radio inline">
+                  <div class="radio-inline">
+                    <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option4">
+                    4
+                  </div>
+                </label>
+                <label class="radio-label radio inline">
+                  <div class="radio-inline">
+                    <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option5">
+                    5
+                  </div>
+                </label>
+                <label class="radio-label radio inline">
+                  <div class="radio-inline">
+                    <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option6">
+                    6
+                  </div>
+                </label>
+                <label class="radio-label radio inline">
+                  <div class="radio-inline">
+                    <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option7">
+                    7
+                  </div>
+                </label>
+                <label class="radio-label radio inline">
+                  <div class="radio-inline">
+                    <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option8">
+                    8
+                  </div>
+                </label>
+                <label class="radio-label radio inline inline-extra">
+                  <div class="radio-inline">
+                    <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option9">
+                    其它
+                    <input type="text" class="form-control inline-text" name="" value="">
+                  </div>
+                </label>
+                <span class="list-type-left">不满意</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="survey-question">
+          <div class="survey-ques-title">
+            6. 下拉列表
+          </div>
+          <div class="survey-ques-con">
+            <div class="survey-ques-warning">请按要求作答</div>
+            <div class="form-group">
+              <div class="survey-ques-li">
+                <select class="form-control">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="survey-question">
+          <div class="survey-ques-title">
+            7. 图片单选
+          </div>
+          <div class="survey-ques-con">
+            <div class="survey-ques-warning">请按要求作答</div>
+            <div class="form-group img-box">
+              <div class="survey-ques-li radio img-area">
+                <img src="images/ma.png" class="img-fix" alt="">
+                <label class="radio-label">
+                  <input type="radio" name="optionsRadios" id="imgRadios1" value="option2">选项1
+                </label>
+              </div>
+              <div class="survey-ques-li radio img-area">
+                <img src="images/ma.png" class="img-fix" alt="">
+                <label class="radio-label">
+                  <input type="radio" name="optionsRadios" id="imgRadios2" value="option2">选项2
+                </label>
+              </div>
+              <div class="survey-ques-li radio img-area">
+                <img src="images/ma.png" class="img-fix" alt="">
+                <label class="radio-label">
+                  <input type="radio" name="optionsRadios" id="imgRadios3" value="option2">选项3
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="survey-question">
+          <div class="survey-ques-title">
+            8. 图片多选
+          </div>
+          <div class="survey-ques-con">
+            <div class="survey-ques-warning">请按要求作答</div>
+            <div class="form-group img-box">
+              <div class="survey-ques-li checkbox img-area">
+                <img src="images/ma.png" class="img-fix" alt="">
+                <label class="checkbox-label">
+                  <input type="checkbox" name="imgsRadios1" id="blankCheckbox2" value="option1" aria-label="...">选项1
+                </label>
+              </div>
+              <div class="survey-ques-li checkbox img-area">
+                <img src="images/ma.png" class="img-fix" alt="">
+                <label class="checkbox-label">
+                  <input type="checkbox" name="imgsRadios2" id="blankCheckbox2" value="option2" aria-label="...">选项2
+                </label>
+              </div>
+              <div class="survey-ques-li checkbox img-area">
+                <img src="images/ma.png" class="img-fix" alt="">
+                <label class="checkbox-label">
+                  <input type="checkbox" name="imgsRadios3" id="blankCheckbox2" value="option3" aria-label="...">选项3
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="survey-question">
+          <div class="survey-ques-title">
+            9. 矩阵单选题
+          </div>
+          <div class="survey-ques-con">
+            <div class="survey-ques-warning">请按要求作答</div>
+            <div class="form-group">
+              <table class="table table-bordered">
+                <tbody>
+                  <tr>
+                    <td></td>
+                    <td>选项1</td>
+                    <td>选项2</td>
+                  </tr>
+                  <tr>
+                    <td>矩阵行1</td>
+                    <td>
+                      <label class="radio-label">
+                        <input type="radio" name="blankRadios" id="blankRadios1" value="option1" aria-label="...">
+                      </label>
+                    </td>
+                    <td>
+                      <label class="radio-label">
+                        <input type="radio" name="blankRadios" id="blankRadios2" value="option2" aria-label="...">
+                      </label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>矩阵行2</td>
+                    <td>
+                      <label class="radio-label">
+                        <input type="radio" name="blankRadios2" id="blankRadios4" value="option1" aria-label="...">
+                      </label>
+                    </td>
+                    <td>
+                      <label class="radio-label">
+                        <input type="radio" name="blankRadios2" id="blankRadios5" value="option2" aria-label="...">
+                      </label>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="survey-question">
+          <div class="survey-ques-title">
+            10. 矩阵多选题
+          </div>
+          <div class="survey-ques-con">
+            <div class="survey-ques-warning">请按要求作答</div>
+            <div class="form-group">
+              <table class="table table-bordered">
+                <tbody>
+                  <tr>
+                    <td></td>
+                    <td>选项1</td>
+                    <td>选项2</td>
+                  </tr>
+                  <tr>
+                    <td>矩阵行1</td>
+                    <td>
+                      <label class="checkbox-label">
+                        <input type="checkbox" name="blankCheckboxs" id="checkboxs1" value="option1" aria-label="...">
+                      </label>
+                    </td>
+                    <td>
+                      <label class="checkbox-label">
+                        <input type="checkbox" name="blankCheckboxs" id="checkboxs2" value="option2" aria-label="...">
+                      </label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>矩阵行2</td>
+                    <td>
+                      <label class="checkbox-label">
+                        <input type="checkbox" name="blankCheckboxs2" id="checkboxs3" value="option1" aria-label="...">
+                      </label>
+                    </td>
+                    <td>
+                      <label class="checkbox-label">
+                        <input type="checkbox" name="blankCheckboxs2" id="checkboxs4" value="option2" aria-label="...">
+                      </label>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="survey-ques-btn form-group">
+          <button class="btn" type="button" name="btnPrev" id="btnPrev">上一页</button>
+          <button class="btn btn-info" type="button" name="btnNext" id="btnNext">下一页</button>
+          <button class="btn btn-primary" type="button" name="btnSubmit" id="btnSubmit">提 交</button>
+        </div>
+        <div class="survey-ques-pager">
+          <span>
+            页码:1/1
+          </span>
+        </div>
+      </div>
+    </div>
+    <script>
+      $(document).ready(function () {
+        $('input').iCheck({checkboxClass: 'icheckbox_square-aero', radioClass: 'iradio_square-aero'});
+        $('#btnSubmit').on('click', function () {})
+      });
+    </script>
+  </body>
+</html>

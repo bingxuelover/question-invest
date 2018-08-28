@@ -1,0 +1,250 @@
+<div class="form-horizontal form-set" id="page-ques">
+  <div class="form-inline">
+    <div class="checkbox">
+      <label><input type="checkbox" name="" value="">
+        该题可跳过不答</label>
+    </div>
+  </div>
+  <div class="form-inline">
+    <div class="checkbox">
+      <label><input type="checkbox" name="" value="">
+        变为多选题</label>
+    </div>
+  </div>
+  <div class="form-inline">
+    <div class="checkbox">
+      <label><input type="checkbox" name="checkRandom" value="" onclick="checkRandom(this)">
+        选项随机乱序
+      </label>
+    </div>
+    <div class="form-group check-random-group hide">
+      ，固定最后
+      <select class="form-control input-sm">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+      </select>
+      个选项
+    </div>
+  </div>
+  <div class="handle-dialog-item handle-dialog-title-item">
+    <div class="handle-dialog-item-head">
+      <span>标题引用</span>
+      <span class="handle-dialog-item-line"></span>
+      <a href="javascript:void(0)" onclick="changeState(this)" class="handle-dialog-item-arrow handle-dialog-arrow-down">展开</a>
+    </div>
+    <div class="handle-dialog-item-detail hide">
+      <div class="form-inline">
+        <span class="set-span">标题引用</span>
+        <select class="form-control input-sm select-w-long" id="select-title">
+          <option value="0">请选择来源题目</option>
+          <option value="3">Q3 个人月收入</option>
+          <option value="2">Q2 您的职业</option>
+          <option value="1">Q1 您的性别</option>
+        </select>
+        <span class="set-span">的答案</span>
+        <input type="button" onclick="setText('#select-title','#title-quote-text')" class="btn btn-primary btn-sm title-quote-button" value="引用">
+      </div>
+      <textarea class="form-control title-quote-text" id="title-quote-text">你期待今年圣诞节吗？</textarea>
+    </div>
+  </div>
+  <div class="handle-dialog-item handle-dialog-choice-item">
+    <div class="handle-dialog-item-head">
+      <span>选项控制</span>
+      <span class="handle-dialog-item-line"></span>
+      <a class="handle-dialog-item-arrow handle-dialog-arrow-down" href="javascript:void(0)" onclick="changeState(this)">展开</a>
+    </div>
+    <div class="handle-dialog-item-detail hide">
+      <div class="choice-control-tree form-inline">
+        <div class="checkbox">
+          <label><input type="checkbox" onclick="choiceCheck(event,this)" name="choice-quote-flag" class="choice-flag choice-quote-flag">
+            选项互斥</label>
+        </div>
+        <div class="checkbox ml10">
+          <label><input type="checkbox" onclick="choiceCheck(event,this)" name="choice-quote-flag" class="choice-flag choice-quote-flag">
+            选项引用</label>
+        </div>
+        <div class="checkbox ml10">
+          <label><input type="checkbox" onclick="choiceCheck(event,this)" name="choice-logic-flag" class="choice-flag choice-logic-flag">
+            选项逻辑</label>
+        </div>
+      </div>
+      <div class="choice-control-content">
+        <div class="handle-dialog-item-content choice-exclusive-content hide">
+          <div class="handle-dialog-item-tip set-span">选项互斥：选中某个选项，则其他选择均取消。</div>
+          <div class="choice-exclusive-item form-inline mt10">
+            <span class="set-span">选项</span>
+            <select class="form-control select-w-long input-sm">
+              <option value="0">请选择选项
+              </option>
+              <option value="1">衣服</option>
+              <option value="2">箱包鞋履</option>
+              <option value="3">化妆护肤</option>
+              <option value="4">珠宝首饰</option>
+              <option value="5">数码产品</option>
+              <option value="6">个性小玩物</option>
+            </select>
+            <span class="set-span">与其他选项互斥</span>
+            <span class="glyphicon glyphicon-plus-sign ml0" onclick="ques.addChoice(this)"></span>
+          </div>
+        </div>
+        <div class="handle-dialog-item-content choice-quote-content hide">
+          <div class="choice-quote-item form-inline">
+            <span class="set-span">选项引用</span>
+            <select class="form-control select-w-long input-sm">
+              <option value="0">请选择来源题目
+              </option>
+            </select>
+            <span class="set-span">的答案</span>
+          </div>
+        </div>
+        <div class="handle-dialog-item-content choice-logic-content hide">
+          <div class="choice-logic-item">
+            <div class="form-inline">
+              <span class="set-span">如果</span>
+              <select class="form-control select-w-long input-sm">
+                <option value="0">请选择题目</option>
+                <option value="1">Q1 您的性别</option>
+                <option value="2">Q2 个人月收入</option>
+              </select>
+              <span class="set-span">的选项</span>
+              <select class="form-control select-w-s input-sm">
+                <option value="0">请选择选项</option>
+              </select>
+              <span class="set-span">被选中</span>
+            </div>
+            <div class="form-inline mt10">
+              <span class="set-span">则本题的选项</span>
+              <select class="form-control select-w-s input-sm">
+                <option value="0">请选择选项
+                </option>
+                <option value="1">很期待</option>
+                <option value="2">期待</option>
+                <option value="3">一般</option>
+                <option value="4">不期待</option>
+                <option value="5">很不期待</option>
+                <option value="6">没听说过圣诞节</option>
+              </select>
+              <span class="set-span">被隐藏</span>
+            </div>
+            <div class="mt20">
+              <span class="handle-dialog-item-line"></span>
+              <span class="glyphicon glyphicon-plus-sign icon-addshow ml0" onclick="ques.addLogic(this)"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  //选项随机乱序
+  function checkRandom(elm) {
+    var span = $(elm).parent('label').parent('.checkbox').next('.form-group');
+    if ($(elm).is(':checked')) {
+      span.removeClass('hide');
+    } else {
+      span.addClass('hide');
+    }
+  }
+  // 展开关闭
+  function changeState(elm) {
+    var el = $(elm);
+    var n = el.parents('.handle-dialog-item-head').next('.handle-dialog-item-detail');
+    if (el.hasClass('handle-dialog-arrow-down')) {
+      el.removeClass('handle-dialog-arrow-down').addClass('handle-dialog-arrow-up').text('收起');
+      n.removeClass('hide');
+    } else if (el.hasClass('handle-dialog-arrow-up')) {
+      el.removeClass('handle-dialog-arrow-up').addClass('handle-dialog-arrow-down').text('展开');
+      n.addClass('hide');
+    }
+  }
+  //标题引用里的操作
+  function setText(el, targetEl) {
+    var title = $(el).val();
+    if (title !== '0') {
+      $(targetEl).append('[Q' + title + ']')
+    }
+  }
+  //选项控制的多选框
+  function choiceCheck(event, elm) {
+    if ($(elm).is(':disabled')) {
+      event.preventDefault();
+    } else {
+      var pCheck = $(elm).parent('label').parent('.checkbox');
+      var i = $('.choice-control-tree > .checkbox').index(pCheck);
+      var sib = pCheck.siblings('.checkbox');
+      if ($(elm).is(':checked')) {
+        $('.handle-dialog-item-content').eq(i).removeClass('hide');
+        sib.each(function (index, el) {
+          $(el).find('input').attr('disabled', 'disabled');
+        });
+      } else {
+        $('.handle-dialog-item-content').eq(i).addClass('hide');
+        sib.each(function (index, el) {
+          $(el).find('input').removeAttr('disabled');
+        });
+      }
+    }
+    return false;
+  }
+  // 选项控制里的操作
+  var ques = new quesSet();
+  function quesSet() {
+    this.addLogic = function (elm) {
+      var logic = document.createElement('div');
+      logic.className = 'choice-logic-item';
+      var html = '';
+      html += '<div class="form-inline"><span class="set-span">如果</span>';
+      html += '<select class="form-control select-w-long input-sm">';
+      html += '<option value="0">请选择题目</option>';
+      html += '<option value="4">Q3 个人月收入</option>';
+      html += '<option value="2">Q1 您的性别</option>';
+      html += '</select>';
+      html += '<span class="set-span">的选项</span>';
+      html += '<select class="form-control select-w-s input-sm">';
+      html += '  <option value="0">请选择选项</option>';
+      html += '</select>';
+      html += '<span class="set-span">被选中</span>';
+      html += '</div>';
+      html += '<div class="form-inline mt10">';
+      html += '  <span class="set-span">则本题的选项</span>';
+      html += '  <select class="form-control select-w-s input-sm">';
+      html += '    <option value="0">请选择选项</option>';
+      html += '    <option value="1">很期待</option>';
+      html += '    <option value="2">期待</option>';
+      html += '    <option value="3">一般</option>';
+      html += '    <option value="4">不期待</option>';
+      html += '    <option value="5">很不期待</option>';
+      html += '    <option value="6">没听说过圣诞节</option>';
+      html += '  </select>';
+      html += '  <span class="set-span">被隐藏</span>';
+      html += '</div>';
+      html += '<div class="mt20"><span class="handle-dialog-item-line"></span> ';
+      html += '<span class="glyphicon glyphicon-minus-sign ml0" onclick="ques.removeLogic(this)"></span></div>';
+      logic.innerHTML = html;
+      $(elm).parents('.choice-logic-item').parent().append($(logic));
+    },
+    this.removeLogic = function (elm) {
+      $(elm).parents('.choice-logic-item').remove();
+    },
+    this.addChoice = function (elm) {
+      var choice = document.createElement('div');
+      choice.className = 'choice-logic-item';
+      var html = '';
+      html += '<div class="choice-exclusive-item form-inline mt10">';
+      html += '  <span class="set-span">选项</span>';
+      html += '  <select class="form-control select-w-long input-sm">';
+      html += '    <option value="0">请选择选项</option>';
+      html += '  </select>';
+      html += '  <span class="set-span">与其他选项互斥</span>';
+      html += '  <span class="glyphicon glyphicon-minus-sign ml0" onclick="ques.removeChoice(this)"></span>';
+      html += '</div>';
+      choice.innerHTML = html;
+      $(elm).parents('.choice-exclusive-item').parent().append($(choice));
+    },
+    this.removeChoice = function (elm) {
+      $(elm).parents('.choice-exclusive-item').remove();
+    }
+  }
+</script>
